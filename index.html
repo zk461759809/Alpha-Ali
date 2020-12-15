@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Java-Alpha</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.zhimg.com/docsify/lib/themes/vue.css">
+  <!-- <link rel="stylesheet" href="//unpkg.zhimg.com/docsify/themes/buble.css"> -->
+  <!-- </head> -->
+</head>
+<body>
+  <div id="app">正在加载，请稍后...</div>
+  <script>
+    window.$docsify = {
+      name: 'Java-Alpha',
+      // repo: 'XBRL-WEB平台2.0版本说明及使用手册',
+      logo: 'images/icon.svg',
+      auto2top: true, // 当路线改变时，滚动到屏幕的顶部。
+      coverpage: true, // 激活封面功能。如果为true，则会从中加载_coverpage.md。
+      executeScript: true, // 执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开启。
+      loadSidebar: true, // _sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载。
+      loadNavbar: false, // _navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载。
+      mergeNavbar: true, // Navbar将在小屏幕上与侧边栏合并。
+      maxLevel: 4, // 最大的内容表级别。
+      // subMaxLevel: 2, // 在自定义边栏中添加目录（TOC）。
+      ga: 'UA-106147152-1',
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      // search: {
+      //   maxAge: 86400000, // 过期时间，单位毫秒（一天）
+      //   paths: 'auto',
+      //   placeholder: '搜索',
+      //   noData: '没有相关记录'
+      // },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+      },
+      plugins: [
+        function (hook) {
+          // 初始化时调用，只调用一次，没有参数。
+          hook.mounted(function (t) {
+            // 创建 id为 gitalk-container 的div
+            var a = Docsify.dom;
+            var n = a.create("div");
+            n.id = "gitalk-container";
+            var i = a.getNode("#main");
+            n.style = "width: " + i.clientWidth + "px; margin: 0 auto 20px;", a.appendTo(a.find(".content"),n);
+          })
+
+          // 解析成 html 后调用。
+          hook.afterEach(function (html) {
+            // 先清空掉 gitalk-container 中的html
+            var element=document.getElementById("gitalk-container");
+            element.innerHTML="";
+            // 加载评论
+            var gitalk = new Gitalk({
+              clientID: '97de91fd766177cf32bb',
+              clientSecret: 'e4c7d0b04fd37f4eeed8285021aae0a759c03b64',
+              repo: 'XBRL-BOOK-DISCUSS',
+              owner: 'zhaokai-pansoft',
+              admin: ['zhaokai-pansoft'],
+              id: md5(window.location.href),
+              // facebook-like distraction free mode
+              distractionFreeMode: false
+            });
+            gitalk.render('gitalk-container')
+            
+            return html
+          })
+        }
+      ]
+    }
+  </script>
+  <style>
+    body {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .markdown-section {
+      max-width: 1024px;
+    }
+
+    .markdown-section ol, .markdown-section p, .markdown-section ul {
+      line-height: 2.2rem;
+    }
+  </style>
+  <script src="//unpkg.zhimg.com/docsify/lib/docsify.min.js"></script>
+  <!-- <script src="//unpkg.zhimg.com/docsify/lib/plugins/search.min.js"></script> -->
+  <script src="//unpkg.zhimg.com/docsify/lib/plugins/ga.min.js"></script>
+  <script src="//unpkg.zhimg.com/prismjs/components/prism-bash.min.js"></script>
+  <script src="//unpkg.zhimg.com/prismjs/components/prism-markdown.min.js"></script>
+  <script src="//unpkg.zhimg.com/prismjs/components/prism-nginx.min.js"></script>
+  <script src="//unpkg.zhimg.com/docsify-copy-code"></script>
+
+  <link rel="stylesheet" href="//unpkg.zhimg.com/gitalk/dist/gitalk.css">
+
+  <!-- <script src="//unpkg.zhimg.com/docsify/lib/plugins/gitalk.min.js"></script> -->
+  <script src="//unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+  <script src="//unpkg.zhimg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+</body>
+</html>
