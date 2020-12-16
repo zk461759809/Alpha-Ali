@@ -9,5 +9,5 @@
 
 - Jock
 
-[平台后端源码](http://192.168.248.176/xbrl/xbrl-root)
-[当前项目源码](https://github.com/zk461759809/Ali-Alpha)
+[GitHub源码](https://github.com/zk461759809/Ali-Alpha)
+[docsify](https://github.com/docsifyjs/docsify/)
