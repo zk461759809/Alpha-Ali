@@ -7,12 +7,12 @@
 
 2.  **<font color=#FF0000>【强制】</font>** 所有的覆写方法，必须加@Override注解。 
 
-<font color=#FF0000>说明</font>：getObject()与 get0bject()的问题。一个是字母的 O，一个是数字的 0，加@Override 可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。
+<font color=#FFD700>说明</font>：getObject()与 get0bject()的问题。一个是字母的 O，一个是数字的 0，加@Override 可以准确判断是否覆盖成功。另外，如果在抽象类中对方法签名进行修改，其实现类会马上编译报错。
 
 
 3.  **<font color=#FF0000>【强制】</font>** 相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object。
 
-<font color=#FF0000>说明</font>：可变参数必须放置在参数列表的最后。（提倡同学们尽量不用可变参数编程）
+<font color=#FFD700>说明</font>：可变参数必须放置在参数列表的最后。（提倡同学们尽量不用可变参数编程）
 
 <font color=#008000> 正例</font>：
 
@@ -26,7 +26,7 @@ public List<User> listUsers(String type, Long... ids) {...}
 
 5.  **<font color=#FF0000>【强制】</font>** 不能使用过时的类或方法。
 
-<font color=#FF0000>说明</font>：java.net.URLDecoder 中的方法 decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source, String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口；作为调用方来说，有义务去考证过时方法的新实现是什么。
+<font color=#FFD700>说明</font>：java.net.URLDecoder 中的方法 decode(String encodeStr) 这个方法已经过时，应该使用双参数decode(String source, String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口；作为调用方来说，有义务去考证过时方法的新实现是什么。
 
 
 6.  **<font color=#FF0000>【强制】</font>** Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。
@@ -35,12 +35,12 @@ public List<User> listUsers(String type, Long... ids) {...}
 
 <font color=#FF0000>反例</font>：object.equals("test"); 
 
-<font color=#FF0000>说明</font>：推荐使用java.util.Objects#equals（JDK7引入的工具类）
+<font color=#FFD700>说明</font>：推荐使用java.util.Objects#equals（JDK7引入的工具类）
 
 
 7.  **<font color=#FF0000>【强制】</font>** 所有整型包装类对象之间**值的比较**， 全部使用 equals 方法比较。
 
-<font color=#FF0000>说明</font>：对于 Integer var = ? 在 **-128 至 127** 之间的赋值， Integer 对象是在 IntegerCache.cache 产生，会复用已有对象，这个区间内的 Integer 值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑，推荐使用 equals 方法进行判断。
+<font color=#FFD700>说明</font>：对于 Integer var = ? 在 **-128 至 127** 之间的赋值， Integer 对象是在 IntegerCache.cache 产生，会复用已有对象，这个区间内的 Integer 值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑，推荐使用 equals 方法进行判断。
 
 
 8.  **<font color=#FF0000>【强制】</font>** 任何货币金额，均以最小货币单位且整型类型来进行存储。
@@ -48,7 +48,7 @@ public List<User> listUsers(String type, Long... ids) {...}
 
 9.  **<font color=#FF0000>【强制】</font>** 浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals 来判断。
 
-<font color=#FF0000>说明</font>：浮点数采用“尾数+阶码” 的编码方式，类似于科学计数法的“有效数字+指数” 的表示方式。二进制无法精确表示大部分的十进制小数，具体原理参考《码出高效》 。
+<font color=#FFD700>说明</font>：浮点数采用“尾数+阶码” 的编码方式，类似于科学计数法的“有效数字+指数” 的表示方式。二进制无法精确表示大部分的十进制小数，具体原理参考《码出高效》 。
 
 <font color=#FF0000>反例</font>：
 
@@ -102,7 +102,7 @@ if (x.equals(y)) {
 
 11.  **<font color=#FF0000>【强制】</font>** 禁止使用构造方法 BigDecimal(double)的方式把 double 值转化为 BigDecimal 对象。
 
-<font color=#FF0000>说明</font>：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
+<font color=#FFD700>说明</font>：BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。
 
 如： BigDecimal g = new BigDecimal(0.1f); 实际的存储值为： 0.10000000149
 
@@ -122,7 +122,7 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 
 3）**<font COLOR=#FFD700>【推荐】</font>** 所有的局部变量使用基本数据类型。
 
-<FONT COLOR=#FF0000>说明</FONT>： POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。
+<font color=#FFD700>说明</font>： POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。
 
 <FONT COLOR=#008000>正例</FONT>： 数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。
 
@@ -136,7 +136,7 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 
 14. **<font color=#FF0000>【强制】</font>** 序列化类新增属性时，请不要修改 serialVersionUID 字段，避免反序列失败；如果完全不兼容升级，避免反序列化混乱，那么请修改 serialVersionUID 值。
 
-<FONT COLOR=#FF0000>说明</FONT>： 注意 serialVersionUID 不一致会抛出序列化运行时异常。
+<font color=#FFD700>说明</font>： 注意 serialVersionUID 不一致会抛出序列化运行时异常。
 
 
 15. **<font color=#FF0000>【强制】</font>** 构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在init方法中。 
@@ -144,17 +144,17 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);
 
 16. **<font color=#FF0000>【强制】</font>** POJO 类必须写 toString 方法。使用 IDE 中的工具： source> generate toString时，如果继承了另一个 POJO 类，注意在前面加一下 super.toString。
 
-<font color=#FF0000>说明</font>：在方法执行抛出异常时，可以直接调用 POJO 的 toString()方法打印其属性值，便于排查问题。
+<font color=#FFD700>说明</font>：在方法执行抛出异常时，可以直接调用 POJO 的 toString()方法打印其属性值，便于排查问题。
 
 
 17. **<font color=#FF0000>【强制】</font>** 禁止在 POJO 类中，同时存在对应属性 xxx 的 isXxx()和 getXxx()方法。
 
-<font color=#FF0000>说明</font>：框架在调用属性 xxx 的提取方法时，并不能确定哪个方法一定是被优先调用到，神坑之一。
+<font color=#FFD700>说明</font>：框架在调用属性 xxx 的提取方法时，并不能确定哪个方法一定是被优先调用到，神坑之一。
 
 
 18. **<FONT COLOR=#FFD700>【推荐】</FONT>** 使用索引访问用String的split方法得到的数组时，需做最后一个分隔符后有无内容的检查，否则会有抛IndexOutOfBoundsException的风险。 
 
-<font color=#FF0000>说明</font>：
+<font color=#FFD700>说明</font>：
 
 ```java
 String str = "a,b,c,,";  
@@ -168,7 +168,7 @@ String[] ary = str.split(",");
 
 20.  **<FONT COLOR=#FFD700>【推荐】</FONT>** 类内方法定义的顺序依次是：公有方法或保护方法 > 私有方法 > getter / setter 方法。
 
-<font color=#FF0000>说明</font>：公有方法是类的调用者和维护者最关心的方法，首屏展示最好；保护方法虽然只是子类关心，也可能是 “模板设计模式” 下的核心方法；而私有方法外部一般不需要特别关心，是一个黑盒实现； 因为承载的信息价值较低，所有 Service 和 DAO 的 getter/setter 方法放在类体最后。
+<font color=#FFD700>说明</font>：公有方法是类的调用者和维护者最关心的方法，首屏展示最好；保护方法虽然只是子类关心，也可能是 “模板设计模式” 下的核心方法；而私有方法外部一般不需要特别关心，是一个黑盒实现； 因为承载的信息价值较低，所有 Service 和 DAO 的 getter/setter 方法放在类体最后。
 
 
 21. **<FONT COLOR=#FFD700>【推荐】</FONT>** setter 方法中，参数名称与类成员变量名称一致， this.成员名 = 参数名。在 getter/setter 方法中， 不要增加业务逻辑，增加排查问题的难度。
@@ -188,7 +188,7 @@ String[] ary = str.split(",");
 
 22. **<FONT COLOR=#FFD700>【推荐】</FONT>** 循环体内，字符串的连接方式，使用 StringBuilder 的 append 方法进行扩展。
 
-<font color=#FF0000>说明</font>：下例中，反编译出的字节码文件显示每次循环都会 new 出一个 StringBuilder 对象，然后进行 append 操作，最后通过 toString 方法返回 String 对象，造成内存资源浪费。
+<font color=#FFD700>说明</font>：下例中，反编译出的字节码文件显示每次循环都会 new 出一个 StringBuilder 对象，然后进行 append 操作，最后通过 toString 方法返回 String 对象，造成内存资源浪费。
 
 <font color=#FF0000>反例</font>：
 
@@ -215,7 +215,7 @@ String[] ary = str.split(",");
 
 24. **<FONT COLOR=#FFD700>【推荐】</FONT>** 慎用 Object 的 clone 方法来拷贝对象。
 
-<font color=#FF0000>说明</font>：对象 clone 方法默认是浅拷贝，若想实现深拷贝需覆写 clone 方法实现域对象的深度遍历式拷贝。
+<font color=#FFD700>说明</font>：对象 clone 方法默认是浅拷贝，若想实现深拷贝需覆写 clone 方法实现域对象的深度遍历式拷贝。
 
 
 25. **<FONT COLOR=#FFD700>【推荐】</FONT>** 类成员与方法访问控制从严：
@@ -236,4 +236,4 @@ String[] ary = str.split(",");
 
 8） 类成员方法只对继承类公开，那么限制为 protected。
 
-<font color=#FF0000>说明</font>：任何类、方法、参数、变量，严控访问范围。过于宽泛的访问范围，不利于模块解耦。思考：如果是一个 private 的方法，想删除就删除，可是一个 public 的 service 成员方法或成员变量，删除一下，不得手心冒点汗吗？变量像自己的小孩，尽量在自己的视线内，变量作用域太大， 无限制的到处跑，那么你会担心的。
+<font color=#FFD700>说明</font>：任何类、方法、参数、变量，严控访问范围。过于宽泛的访问范围，不利于模块解耦。思考：如果是一个 private 的方法，想删除就删除，可是一个 public 的 service 成员方法或成员变量，删除一下，不得手心冒点汗吗？变量像自己的小孩，尽量在自己的视线内，变量作用域太大， 无限制的到处跑，那么你会担心的。
